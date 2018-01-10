@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js --exec babel-node"
+    "start": "nodemon ./index.js --exec babel-node",
+    "es": "eslint data server utils",
+    "es:fix": "eslint --fix data server utils",
+    "es:watch": "esw -w --fix data server utils"
   },
   "keywords": [],
   "author": "",
@@ -14,22 +17,21 @@
     "casual": "^1.5.19",
     "express": "^4.16.2",
     "graphql": "^0.11.7",
-    "graphql-compose": "^2.10.1",
-    "graphql-compose-connection": "^2.5.4",
-    "graphql-compose-mongoose": "^1.10.0",
-    "graphql-compose-pagination": "^1.1.2",
+    "graphql-playground-middleware-express": "^1.4.7",
     "graphql-tools": "^2.16.0",
     "mongodb": "^3.0.1",
     "mongoose": "^5.0.0-rc2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/node": "^7.0.0-beta.37",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.37",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.37",
+    "@babel/preset-env": "^7.0.0-beta.37",
+    "eslint": "4.15.0",
+    "eslint-config-kentcdodds": "13.0.1",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-watch": "3.1.3",
     "nodemon": "^1.14.7"
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ]
   }
 }

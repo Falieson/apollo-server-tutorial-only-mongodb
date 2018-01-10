@@ -1,12 +1,24 @@
-import {Author, Post, View} from './connectors'
-import {consoleError as handleError} from '../utils/errors'
-
-function returnResolver(err, res) {
-  if (err) return handleError(err)
-  return res
-}
+import {Author, Post, View} from './models/'
 
 const resolvers = {
+  Author: {
+    posts(author) {
+      return Post.find({authorId: author._id})
+    }
+  },
+  Post: {
+    author(post) {
+      return Author.findOne({ _id: post.authorId})
+    },
+    views(post) {
+      return View.findOne({ postId: post._id })
+    }
+  },
+  View: {
+    post(view) {
+      return Post.findOne({viewId: view._id})
+    }
+  },
   Query: {
     author(_, args) {
       return Author.findOne(args)
@@ -21,24 +33,11 @@ const resolvers = {
       return Post.find(args)
     }
   },
-  Author: {
-    posts(author) {
-      return Post.find({authorId: author._id}, returnResolver)
-    }
-  },
-  Post: {
-    author(post) {
-      return Author.findOne({ _id: post.authorId}, returnResolver)
-    },
-    views(post) {
-      return View.findOne({ postId: post._id }, returnResolver)
-    }
-  },
-  View: {
-    post(view) {
-      return Post.findOne({viewId: view._id}, returnResolver)
+  Mutation: {
+    addAuthor(_, args) {
+      return Author.create(args)
     }
   }
-};
+}
 
-export default resolvers;
+export default resolvers

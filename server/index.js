@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express'
 import bodyParser from 'body-parser'
 import { graphqlExpress } from 'apollo-server-express'
@@ -23,12 +24,12 @@ graphQLServer.listen(GRAPHQL_PORT, ()=> {
       🌐      GraphQL Server      🌐
 
     🎮  ${webaddress({ // explorer
-      port: GRAPHQL_PORT,
-      path: GRAPHQL_EXPLORE,
-    })}
+    port: GRAPHQL_PORT,
+    path: GRAPHQL_EXPLORE
+  })}
     📡  ${webaddress({ // endpoint
-      port: GRAPHQL_PORT,
-      path: GRAPHQL_REST,
-    })}
+    port: GRAPHQL_PORT,
+    path: GRAPHQL_REST
+  })}
   `)
 })

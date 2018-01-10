@@ -1,4 +1,4 @@
-import {addMockFunctionsToSchema, makeExecutableSchema} from 'graphql-tools'
+import {makeExecutableSchema} from 'graphql-tools' // addMockFunctionsToSchema,
 // import mocks from './mocks'
 import resolvers from './resolvers'
 
@@ -38,7 +38,7 @@ type Mutation {
   # A mutation to add a new channel to the list of channels
   addAuthor(firstName: String!, lastName: String!): Author
 }
-`;
+`
 
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
