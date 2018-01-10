@@ -43,17 +43,19 @@ class MongooseModel {
     return this.Collection.find(args, cb)
   }
 
-  create(obj = {}) {
+  async create(obj = {}) {
     const args = {
       ...this.defaultRecord(),
       ...obj
     }
     const record = new this.Collection(args)
-    return new Promise((resolve, reject) => {
-      record.save((err, res) => {
-        err ? reject(err): resolve(res)  // eslint-disable-line no-unused-expressions
-      })
-    })
+
+    try {
+      const savedRecord = await record.save()
+      return savedRecord
+    } catch (err) {
+      handleError(err)
+    }
   }
 
   count(args = {}, cb = this.defaultReturn) {
