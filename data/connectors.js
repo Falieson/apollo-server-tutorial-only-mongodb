@@ -63,7 +63,7 @@ function openMongo() {
   mongodb.once('open', () => {
     dbSchema()
     Post.count({}, (err, res) => { 
-      if (err) {return handleError(err)}      
+      if (err) {return handleError(err)}
       res === 0 && fixtures() 
     })
   })

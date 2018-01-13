@@ -33,3 +33,12 @@ graphQLServer.listen(GRAPHQL_PORT, ()=> {
   })}
   `)
 })
+
+
+if(process.NODE_ENV === 'development' || null) {
+  // NOTE: NODEMON ISSUE
+  process.on('SIGINT', () => {
+    console.log('Bye bye!')
+    process.exit() // eslint-disable-line no-process-exit
+  })
+}
